@@ -8,43 +8,11 @@
 		<array>
 			<dict>
 				<key>Comment</key>
-				<string>USB Reset</string>
-				<key>Enabled</key>
-				<false/>
-				<key>Path</key>
-				<string>SSDT-RHUB.aml</string>
-			</dict>
-			<dict>
-				<key>Comment</key>
 				<string>USB Port config for the Asus B660M WifiPlus</string>
 				<key>Enabled</key>
 				<true/>
 				<key>Path</key>
 				<string>SSDT-XH_ADLS3.aml</string>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string></string>
-				<key>Enabled</key>
-				<true/>
-				<key>Path</key>
-				<string>SSDT-SBUS-MCHC.aml</string>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>Disables CNVW Device waking up PC</string>
-				<key>Enabled</key>
-				<true/>
-				<key>Path</key>
-				<string>SSDT-Disable-CNVW.aml</string>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>Works with USBWakeFixup.kext to enable proper wake from sleep</string>
-				<key>Enabled</key>
-				<true/>
-				<key>Path</key>
-				<string>SSDT-USBW.aml</string>
 			</dict>
 			<dict>
 				<key>Comment</key>
@@ -64,11 +32,59 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>Optional: CPU Power Management</string>
+				<string>Required: CPU Power Management</string>
 				<key>Enabled</key>
 				<true/>
 				<key>Path</key>
 				<string>SSDT-PLUG-ALT.aml</string>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Recommended: USB Reset</string>
+				<key>Enabled</key>
+				<true/>
+				<key>Path</key>
+				<string>SSDT-RHUB.aml</string>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Recommended: SMBUS Support</string>
+				<key>Enabled</key>
+				<true/>
+				<key>Path</key>
+				<string>SSDT-SBUS-MCHC.aml</string>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Recommended: Disables CNVW Device in m.2 Wifi waking up PC</string>
+				<key>Enabled</key>
+				<true/>
+				<key>Path</key>
+				<string>SSDT-Disable-CNVW.aml</string>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Recommended: Works with USBWakeFixup.kext to enable proper wake from sleep</string>
+				<key>Enabled</key>
+				<true/>
+				<key>Path</key>
+				<string>SSDT-USBW.aml</string>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Optional: For Thunderbolt 4</string>
+				<key>Enabled</key>
+				<false/>
+				<key>Path</key>
+				<string>SSDT-DTPG.aml</string>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Optional: For Thunderbolt 4</string>
+				<key>Enabled</key>
+				<false/>
+				<key>Path</key>
+				<string>SSDT-MAPLE-RIDGE-RP05-V2.aml</string>
 			</dict>
 		</array>
 		<key>Delete</key>
@@ -253,11 +269,15 @@
 		<dict>
 			<key>PciRoot(0x0)/Pci(0x2,0x0)</key>
 			<dict>
+				<key>Comment</key>
+				<string>Optional: Disables the iGPU as it is not supported by macOS</string>
 				<key>disable-gpu</key>
 				<true/>
 			</dict>
 			<key>PciRoot(0x0)/Pci(0x1F,0x3)</key>
 			<dict>
+				<key>Comment</key>
+				<string>Optional: Realtek ALC897 Audio Support</string>
 				<key>AAPL,slot-name</key>
 				<string>Internal@0,31,3</string>
 				<key>device_type</key>
@@ -351,9 +371,27 @@
 				<key>Arch</key>
 				<string>Any</string>
 				<key>BundlePath</key>
+				<string>USBPorts.kext</string>
+				<key>Comment</key>
+				<string>Required: USB Port Mapping</string>
+				<key>Enabled</key>
+				<true/>
+				<key>ExecutablePath</key>
+				<string></string>
+				<key>MaxKernel</key>
+				<string></string>
+				<key>MinKernel</key>
+				<string></string>
+				<key>PlistPath</key>
+				<string>Contents/Info.plist</string>
+			</dict>
+			<dict>
+				<key>Arch</key>
+				<string>Any</string>
+				<key>BundlePath</key>
 				<string>LucyRTL8125Ethernet.kext</string>
 				<key>Comment</key>
-				<string>Required: Enables the 2.5Gbit Realtek Ethernet Port</string>
+				<string>Recommended: Enables the 2.5Gbit Realtek Ethernet Port</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -369,27 +407,9 @@
 				<key>Arch</key>
 				<string>Any</string>
 				<key>BundlePath</key>
-				<string>USBPorts.kext</string>
-				<key>Comment</key>
-				<string>Required: USB Port Mapping</string>
-				<key>Enabled</key>
-				<false/>
-				<key>ExecutablePath</key>
-				<string></string>
-				<key>MaxKernel</key>
-				<string></string>
-				<key>MinKernel</key>
-				<string></string>
-				<key>PlistPath</key>
-				<string>Contents/Info.plist</string>
-			</dict>
-			<dict>
-				<key>Arch</key>
-				<string>Any</string>
-				<key>BundlePath</key>
 				<string>CPUFriend.kext</string>
 				<key>Comment</key>
-				<string>Optional: CPU Power Management</string>
+				<string>Recommended: CPU Power Management</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -407,7 +427,7 @@
 				<key>BundlePath</key>
 				<string>CPUFriendDataProvider.kext</string>
 				<key>Comment</key>
-				<string>Optional: CPU Power Management for 13600k</string>
+				<string>Recommended: CPU Power Management for 13600k</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -425,7 +445,7 @@
 				<key>BundlePath</key>
 				<string>USBWakeFixup.kext</string>
 				<key>Comment</key>
-				<string>Optional: Wakes up display after sleep</string>
+				<string>Recommended: Wakes up display after sleep</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -443,7 +463,7 @@
 				<key>BundlePath</key>
 				<string>AMDRadeonNavi2xExt.kext</string>
 				<key>Comment</key>
-				<string>AMDRadeonX6000 Driver Extension for RX 6650 XT, RX 6900 XTXH, RX 6950 XT</string>
+				<string>Optional: AMDRadeonX6000 Driver Extension for RX 6650 XT, RX 6900 XTXH, RX 6950 XT</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -481,7 +501,7 @@
 				<key>Comment</key>
 				<string>Optional: VirtualSMC-plugin for CPU Sensor Data e.g. CPU Core Temp</string>
 				<key>Enabled</key>
-				<false/>
+				<true/>
 				<key>ExecutablePath</key>
 				<string>Contents/MacOS/SMCProcessor</string>
 				<key>MaxKernel</key>
@@ -499,7 +519,7 @@
 				<key>Comment</key>
 				<string>Optional: VirtualSMC-plugin for Mainboard Sensor Data e.g. case fan speed</string>
 				<key>Enabled</key>
-				<false/>
+				<true/>
 				<key>ExecutablePath</key>
 				<string>Contents/MacOS/SMCSuperIO</string>
 				<key>MaxKernel</key>
