@@ -2,7 +2,9 @@
 
 ![Thumbnail](Docs/Thumbnail.png)
 
-# macOS Version: macOS Ventura 13.2.1
+# Current macOS
+
+Current Version: macOS Ventura 13.2.1
 
 # Hardware
 - CPU: i5-13600k
