@@ -13,7 +13,7 @@ Current Version: macOS Ventura 13.2.1
 - GPU: MSI Gaming Trio X 6900 XTX
 - PSU: Corsair SF750
 - Case: Asus AP201 (Micro-ATX)
-- Wifi/BT: BCM94360NG (replaces the m.2 Intel AX201 that is preinstalled)
+- Wifi/BT: BCM94360NG (replaces the preinstalled m.2 Intel AX201)
 
 # Working
 - CPU Power Management
